@@ -1,32 +1,23 @@
 pipeline {
-    agent { 
-        node {
-            label 'local-agent'
-            }
-      }
+    agent any
+
     stages {
-        stage('Build') {
+        stage('Print Info') {
             steps {
-                echo "Building.."
-                sh '''
-                echo "Building from Jenkins file"
-                '''
+                echo 'Name: Stuti Garg'
+                echo 'Roll No: SE22UCSE263'
             }
         }
-        stage('Test') {
+
+        stage('Clone') {
             steps {
-                echo "Testing.."
-                sh '''
-                echo "Testing the build triggered from Jenkins file."
-                '''
+                git branch: 'main', url: 'https://github.com/avinash-chauhan-mu/jenkins'
             }
         }
-        stage('Deliver') {
+
+        stage('Run Script') {
             steps {
-                echo 'Deliver....'
-                sh '''
-                echo "doing delivery stuff.."
-                '''
+                sh 'python3 helloworld.py'
             }
         }
     }
